@@ -1,0 +1,10 @@
+Save your professional photo as:
+
+  profile.jpg
+
+in this folder (static/images/).
+
+Recommended: square or portrait JPG/PNG, at least 400x400 pixels.
+The website will use it in the Hero and About sections.
+
+If profile.jpg is missing, the site falls back to avatar.svg automatically.

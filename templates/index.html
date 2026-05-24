@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sumit Timande - Python Developer, Flask Developer, and Machine Learning Enthusiast. Portfolio showcasing web development and ML projects.">
+  <meta name="keywords" content="Python Developer, Flask, Django, Machine Learning, Portfolio, Sumit Timande">
+  <meta name="author" content="Sumit Timande">
+  <meta property="og:title" content="Sumit Timande | Python Developer Portfolio">
+  <meta property="og:description" content="Building scalable web applications and intelligent ML solutions with Python.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ url_for('static', filename='images/profile.jpg', _external=True) }}">
+  <title>Sumit Timande | Python Developer Portfolio</title>
+  {% set linkedin_url = "https://www.linkedin.com/in/sumit-timande-478656287" %}
+  {% set profile_img = url_for('static', filename='images/profile.jpg') %}
+  {% set profile_fallback = url_for('static', filename='images/avatar.svg') %}
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="loader-overlay" aria-hidden="true">
+    <div class="loader-spinner" role="status"></div>
+    <p class="loader-text">Loading Portfolio...</p>
+  </div>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show alert-flash" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- Navigation -->
+  <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="#home">ST.</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link nav-link-custom active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#education">Education</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+              <i id="themeIcon" class="bi bi-sun-fill"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="hero-gradient-bg"></div>
+    <div id="particles-js"></div>
+    <div class="container hero-content">
+      <div class="row align-items-center g-5 py-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <p class="hero-greeting">Hello, I'm</p>
+          <h1 class="hero-name gradient-text">Sumit Timande</h1>
+          <p class="hero-typing"><span id="typed-text"></span></p>
+          <p class="hero-intro">
+            I build scalable web applications and intelligent machine learning solutions
+            using Python, Flask, SQL, and modern technologies.
+          </p>
+          <div class="d-flex flex-wrap gap-3 hero-buttons mb-4">
+            <a href="#" class="btn-gradient" download aria-label="Download resume">
+              <i class="bi bi-download"></i> Download Resume
+            </a>
+            <a href="#contact" class="btn-outline-glow">
+              <i class="bi bi-envelope"></i> Contact Me
+            </a>
+            <a href="#projects" class="btn-outline-glow">
+              <i class="bi bi-folder2-open"></i> View Projects
+            </a>
+          </div>
+          <div class="social-icons d-flex gap-3">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:sumittimande002@gmail.com" aria-label="Email">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="hero-avatar-wrap">
+            <img src="{{ profile_img }}" alt="Sumit Timande - Python Developer" class="hero-avatar" width="380" height="380"
+                 onerror="this.onerror=null;this.src='{{ profile_fallback }}';">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="row stats-bar glass-card mx-1 mb-4" data-aos="fade-up">
+        <div class="col-6 col-md-3 stat-item">
+          <div class="stat-number" data-count="4" data-suffix="+">0</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="stat-number" data-count="97" data-suffix="%">0</div>
+          <div class="stat-label">ML Training Accuracy</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="stat-number" data-count="10" data-suffix="+">0</div>
+          <div class="stat-label">Technologies</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="stat-number" data-count="1" data-suffix="+">0</div>
+          <div class="stat-label">Years Learning</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        <p class="section-subtitle">Passionate Python Developer with hands-on experience in Django, Flask, Machine Learning, Data Analysis, and building responsive full-stack web applications.</p>
+      </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="gradient-border">
+            <div class="inner p-2">
+              <img src="{{ profile_img }}" alt="About Sumit Timande" class="about-image w-100" loading="lazy"
+                   onerror="this.onerror=null;this.src='{{ profile_fallback }}';">
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="glass-card p-4 p-lg-5">
+            <h3 class="h4 mb-3">Python Developer</h3>
+            <p class="text-muted mb-4">
+              Passionate Python Developer with hands-on experience in Django, Flask, Machine Learning,
+              Data Analysis, and building responsive full-stack web applications. I enjoy transforming
+              complex problems into clean, efficient, and user-friendly solutions.
+            </p>
+            <ul class="list-unstyled about-highlights">
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Hands-on experience with <strong>Flask</strong>, <strong>Pandas</strong>, <strong>NumPy</strong>, <strong>CNN</strong>, and <strong>SQL Server</strong></span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Focused on solving real-world business problems through technology</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Strong problem-solving mindset with a commitment to continuous learning</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span>Experienced in building full-stack web apps and ML classification pipelines</span>
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill"></i>
+                <span><strong>Python Developer Training and Certification</strong> — Naresh i Technologies (Naresh IT), Hyderabad</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn-gradient mt-2">
+              <i class="bi bi-chat-dots"></i> Let's Connect
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+        <p class="section-subtitle">Technologies and tools I work with</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="glass-card p-4 h-100">
+            <div class="skill-category">
+              <h4><i class="bi bi-code-slash me-2"></i>Core Skills</h4>
+              <div class="skill-item">
+                <div class="skill-header"><span>Python</span><span>90%</span></div>
+                <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>Django</span><span>85%</span></div>
+                <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header"><span>SQL</span><span>80%</span></div>
+                <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+              </div>
+            </div>
+            <div class="skill-category mb-0">
+              <h4><i class="bi bi-globe me-2"></i>Web Development</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">Flask</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card p-4 h-100">
+            <div class="skill-category">
+              <h4><i class="bi bi-bar-chart me-2"></i>Data &amp; Machine Learning</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">EDA</span>
+                <span class="skill-tag">CNN</span>
+                <span class="skill-tag">Image Classification</span>
+              </div>
+            </div>
+            <div class="skill-category mb-0">
+              <h4><i class="bi bi-tools me-2"></i>Tools</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Visual Studio Code</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">Jupyter Notebook</span>
+                <span class="skill-tag">Google Colab</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-subtitle">Real-world applications and data science work</p>
+      </div>
+      <div class="row g-4">
+        <!-- Project 1 - Featured -->
+        <div class="col-lg-12" data-aos="fade-up">
+          <article class="glass-card project-card featured h-100">
+            <span class="project-badge">Featured Project</span>
+            <div class="row g-0">
+              <div class="col-md-5">
+                <div class="project-img-wrap h-100">
+                  <img src="{{ url_for('static', filename='images/project-ems.svg') }}" alt="Employee Management System" class="project-img h-100" style="min-height:280px;object-fit:cover" loading="lazy">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="project-body">
+                  <h3>Employee Management System</h3>
+                  <p class="text-light">
+                    Built a web-based Employee Management System to manage employees, attendance,
+                    leaves, and departments efficiently through a centralized platform.
+                  </p>
+                  <div class="project-tech">
+                    <span>Python</span><span>Django</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>SQL Server</span>
+                  </div>
+                  <ul class="project-features">
+                    <li>Employee management module</li>
+                    <li>Attendance tracking &amp; leave management</li>
+                    <li>Department management with authentication &amp; authorization</li>
+                    <li>CRUD operations with responsive UI</li>
+                  </ul>
+                  <p class="small text-muted mb-3">
+                    <strong>Responsibilities:</strong> Backend with Django, responsive frontend,
+                    SQL Server integration, secure authentication, and database management.
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn-gradient btn-sm">
+                      <i class="bi bi-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Project 2 - Portfolio -->
+        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="50">
+          <article class="glass-card project-card h-100">
+            <div class="row g-0">
+              <div class="col-md-5">
+                <div class="project-img-wrap h-100">
+                  <img src="{{ url_for('static', filename='images/project-portfolio.svg') }}" alt="Personal Portfolio Website" class="project-img h-100" style="min-height:260px;object-fit:cover" loading="lazy">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="project-body">
+                  <h3>Personal Portfolio Website</h3>
+                  <p class="text-light">
+                    Designed and developed a modern, responsive personal portfolio website to showcase
+                    projects, technical skills, certifications, and professional achievements with an
+                    attractive developer-focused UI.
+                  </p>
+                  <div class="project-tech">
+                    <span>HTML5</span><span>CSS3</span><span>Bootstrap 5</span><span>JavaScript</span><span>Flask</span>
+                  </div>
+                  <ul class="project-features">
+                    <li>Fully responsive modern design with dark mode interface</li>
+                    <li>Animated hero section with typing effect &amp; smooth scrolling navigation</li>
+                    <li>Project showcase, skills, certifications, and education sections</li>
+                    <li>Contact form integration with Flask backend &amp; glassmorphism UI</li>
+                    <li>Mobile-friendly layout with hover animations</li>
+                  </ul>
+                  <p class="small text-muted mb-3">
+                    <strong>Responsibilities:</strong> Designed complete frontend UI/UX, built responsive layouts
+                    with Bootstrap 5, added JavaScript animations, integrated Flask routing and contact handling,
+                    and optimized for recruiter-friendly professional presentation.
+                  </p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn-gradient btn-sm">
+                      <i class="bi bi-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <article class="glass-card project-card h-100">
+            <div class="project-img-wrap">
+              <img src="{{ url_for('static', filename='images/project-ml.svg') }}" alt="Potato Plant Disease Detection" class="project-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3>Potato Plant Disease Detection and Classification</h3>
+              <p class="text-light">
+                Developed a CNN-based deep learning model to classify potato leaf images into
+                Healthy, Early Blight, and Late Blight categories.
+              </p>
+              <div class="project-tech">
+                <span>Python</span><span>CNN</span><span>NumPy</span><span>Matplotlib</span><span>Deep Learning</span>
+              </div>
+              <ul class="project-features">
+                <li>Image preprocessing &amp; data augmentation</li>
+                <li>CNN model training &amp; disease classification</li>
+                <li>Accuracy visualization</li>
+              </ul>
+              <div class="achievement-pills">
+                <span>97% Training Accuracy</span>
+                <span>92% Validation Accuracy</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn-gradient btn-sm">
+                  <i class="bi bi-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <article class="glass-card project-card h-100">
+            <div class="project-img-wrap">
+              <img src="{{ url_for('static', filename='images/project-eda.svg') }}" alt="Diwali Sales Data Analysis" class="project-img" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3>Diwali Sales Data Analysis</h3>
+              <p class="text-light">
+                Performed exploratory data analysis on Diwali sales data to identify customer
+                purchasing behavior and actionable business insights.
+              </p>
+              <div class="project-tech">
+                <span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
+              </div>
+              <ul class="project-features">
+                <li>Data cleaning &amp; preprocessing</li>
+                <li>Sales trend &amp; demographic analysis</li>
+                <li>Data visualization with charts and graphs</li>
+              </ul>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="btn-gradient btn-sm">
+                  <i class="bi bi-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title"><span class="gradient-text">Education</span></h2>
+        <p class="section-subtitle">Academic background and achievements</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="timeline" data-aos="fade-up">
+            <div class="timeline-item glass-card p-4">
+              <h3 class="timeline-degree">Bachelor of Engineering in Computer Science and Engineering</h3>
+              <p class="timeline-school">Prof Ram Meghe College of Engineering and Management Badnera </p>
+              <p class="timeline-meta"><i class="bi bi-mortarboard me-1"></i> CGPA: 7.93</p>
+            </div>
+            <div class="timeline-item glass-card p-4">
+              <h3 class="timeline-degree">HSC (Higher Secondary Certificate)</h3>
+              <p class="timeline-school">Late Jijamata Sabane Upper Primary, High School & Junior Science College, Wardha</p>
+              <p class="timeline-meta"><i class="bi bi-mortarboard me-1"></i> Percentage: 63</p>
+            </div>
+            <div class="timeline-item glass-card p-4 mb-0">
+              <h3 class="timeline-degree">SSC (Secondary School Certificate)</h3>
+              <p class="timeline-school">New English High School & Junior College, Wardha, Maharashtra, India</p>
+              <p class="timeline-meta"><i class="bi bi-mortarboard me-1"></i> Percentage: 66/p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title"><span class="gradient-text">Certifications</span></h2>
+        <p class="section-subtitle">Professional Training</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8" data-aos="zoom-in">
+          <div class="glass-card cert-card">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="icon-wrap flex-shrink-0">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <div>
+                <h3>Python Full Stack Developer Training and Certification</h3>
+                <p class="text-light mb-0">Naresh i Technologies (Naresh IT), Hyderabad</p>
+              </div>
+            </div>
+            <p class="text-muted">Topics covered during the certification program:</p>
+            <div class="cert-topics">
+              <span>Python Programming</span>
+              <span>OOP Concepts</span>
+              <span>Pandas &amp; NumPy</span>
+              <span>Software Development Practices</span>
+              <span>Clean Coding Standards</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        <p class="section-subtitle">Have a project in mind? Let's discuss how I can help.</p>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-5" data-aos="fade-right">
+          <div class="glass-card p-4 h-100">
+            <h3 class="h5 mb-4">Contact Information</h3>
+            <div class="contact-info-item">
+              <div class="icon-wrap"><i class="bi bi-envelope-fill"></i></div>
+              <div>
+                <p class="mb-0 small text-muted">Email</p>
+                <a href="mailto:sumittimande002@gmail.com">sumittimande002@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon-wrap"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <p class="mb-0 small text-muted">Phone</p>
+                <a href="tel:+917249640343">+91 7249640343</a>
+              </div>
+            </div>
+            <div class="contact-info-item mb-0">
+              <div class="icon-wrap"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <p class="mb-0 small text-muted">Location</p>
+                <p class="mb-0">Pune, Maharashtra</p>
+              </div>
+            </div>
+            <div class="social-icons d-flex gap-3 mt-4">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+              <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="mailto:sumittimande002@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="glass-card p-4">
+            <form class="contact-form" action="{{ url_for('contact') }}" method="POST" novalidate>
+              <div class="mb-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+              </div>
+              <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com" required>
+              </div>
+              <div class="mb-4">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+              </div>
+              <button type="submit" class="btn-gradient">
+                <i class="bi bi-send-fill"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h4 class="navbar-brand mb-3">ST.</h4>
+          <p class="text-muted small">
+            Python Developer passionate about backend systems, data, and machine learning.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="h6 mb-3">Quick Links</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2 small">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="h6 mb-3">Connect</h5>
+          <div class="social-icons d-flex gap-3">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="mailto:sumittimande002@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="mb-1">&copy; 2026 Sumit Timande. All rights reserved.</p>
+        <p class="mb-0 small">Built with <i class="bi bi-heart-fill text-danger"></i> Flask &amp; Bootstrap</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button id="scrollTop" class="scroll-top" type="button" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

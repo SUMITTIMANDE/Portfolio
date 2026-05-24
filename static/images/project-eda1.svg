@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" fill="none">
+  <rect width="600" height="340" rx="12" fill="#1e293b"/>
+  <rect x="80" y="180" width="50" height="100" fill="#06b6d4" opacity="0.8"/>
+  <rect x="150" y="140" width="50" height="140" fill="#3b82f6" opacity="0.8"/>
+  <rect x="220" y="100" width="50" height="180" fill="#8b5cf6" opacity="0.8"/>
+  <rect x="290" y="160" width="50" height="120" fill="#06b6d4" opacity="0.7"/>
+  <rect x="360" y="120" width="50" height="160" fill="#3b82f6" opacity="0.8"/>
+  <rect x="430" y="90" width="50" height="190" fill="#8b5cf6" opacity="0.9"/>
+  <text x="300" y="310" text-anchor="middle" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="22" font-weight="700">Diwali Sales Analysis</text>
+</svg>
